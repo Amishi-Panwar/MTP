@@ -1,27 +1,5 @@
 package submit_a3;
 
-
-//TODO --> 
-
-//OBJECT Array - Initialization
-
-//make zero arg createObject method
-//DYNAMICALLY CHECK int to Integer conversion , double to Double if required
-
-//make all constructors private
-//DONE-returns stmt in createObject
-//temp variable naming 
-
-//DISCUSSIONS-->
-//don't throw away equals- what to name then?
-//Mapping fields of class to what provided in constructor--> redundant or not
-
-//DONE-naming createObject1, createObject2(_,_) based on no. of args and calling them correspondingly
-
-//constr
-
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -411,60 +389,6 @@ public class CodeTranformation extends SceneTransformer{
             stmt = Jimple.v().newReturnStmt(temp0);
 
             units.add(stmt);
-
-  //////////////////////////////////////////////////////////////
-//    		String myMessage = waitStart + Thread.currentThread().getId() + " " + 
-//
-//				System.nanoTime() + " " + Thread.currentThread().getStackTrace()[1].getLineNumber();
-//
-//		
-//
-//		Local messageLocal = Jimple.v().newLocal("waitStart", RefType.v("java.io.PrintStream"));
-//
-//        jimpleBody.getLocals().add(messageLocal);
-////
-////        
-////
-//        Stmt assignStmt = Jimple.v().newAssignStmt(messageLocal, 
-//
-//        		Jimple.v().newStaticFieldRef(Scene.v().getField("<java.lang.System: java.io.PrintStream out>").makeRef()));
-//
-////        
-////
-//        Stmt printStmt = Jimple.v().newInvokeStmt(
-//
-//        		Jimple.v().newVirtualInvokeExpr(
-//
-//        				messageLocal, Scene.v().getMethod("<java.io.PrintStream: void println(java.lang.String)>").makeRef(), 
-//
-//        				StringConstant.v(myMessage)
-//
-//        				)
-//
-//        		);
-////
-////
-////        jimpleBody.getUnits().insertBefore(assignStmt, stmt);
-////
-////        jimpleBody.getUnits().insertAfter(printStmt, assignStmt);
-////
-////
-
-            
-            
-//      System.out.println("__________________NEW BODY After Overwriting equals____________________________________");
-//      List <SootClass> allClasses = findAllClasses(); 
-//		for(SootClass c: allClasses) {
-//  		if(!isJDKClass(c)) {
-//		    	for (SootMethod method : c.getMethods()) {
-//
-//			            Body b = method.retrieveActiveBody();
-//			            System.out.println(b);
-//		    	}
-//  		}
-//		}
-            
-          
             body.validate();
 	}
 	
@@ -989,41 +913,7 @@ public class CodeTranformation extends SceneTransformer{
 	        castStmt = Jimple.v().newAssignStmt(temp$25, Jimple.v().newCastExpr(temp$24, RefType.v("APL")));
 	        units.add(castStmt);
 	        //end typecast
-	        /////////////////////////////////////////////
-	       
-	        
-	        //------------------------------------------------------------------
-	        /////////////////////////
-//	        Local intL = Jimple.v().newLocal("inti", IntType.v());
-//	        body.getLocals().add(intL);
-//	        Stmt targetStmt1 = Jimple.v().newAssignStmt(intL, IntConstant.v(10));
-//	        units.add(targetStmt1);
-//	        String myMessage = "aa" + Thread.currentThread().getId() + " " + System.nanoTime() + " " + Thread.currentThread().getStackTrace()[1].getLineNumber();
-//    		Local messageLocal = Jimple.v().newLocal("waitStart", RefType.v("java.io.PrintStream"));
-//
-//            body.getLocals().add(messageLocal);
-//            
-//             assignStmt = Jimple.v().newAssignStmt(messageLocal, 
-//            		Jimple.v().newStaticFieldRef(Scene.v().getField("<java.lang.System: java.io.PrintStream out>").makeRef()));
-//            
-//            Stmt printStmt = Jimple.v().newInvokeStmt(
-//
-//            		Jimple.v().newVirtualInvokeExpr(
-//
-//            				messageLocal, Scene.v().getMethod("<java.io.PrintStream: void println(int)>").makeRef(), 
-//
-//            				intL
-//
-//            				)
-//
-//            		);
-//            body.getUnits().add(assignStmt);
-//            body.getUnits().add(printStmt);
-	        //////////////////////////
-	        
-	        
-	        
-	        
+
 	        returnStmt  = Jimple.v().newReturnStmt(new_obj);
 	        units.add(returnStmt);
 	        /* END OUTSIDE IF BLOCK */
@@ -1036,17 +926,7 @@ public class CodeTranformation extends SceneTransformer{
         
 	}
 	
-//	private static Body cloneBody(Body originalBody) {
-//        Body clonedBody = Jimple.v().newBody(originalBody.getMethod());
-//        PatchingChain<Unit> clonedUnits = clonedBody.getUnits();
-//
-//        for (Unit unit : originalBody.getUnits()) {
-//            Unit clonedUnit = (Unit) unit.clone();
-//            clonedUnits.add(clonedUnit);
-//        }
-//
-//        return clonedBody;
-//    }
+
 	
 	private static Body cloneBody(Body originalBody) {
 	    Body clonedBody = Jimple.v().newBody(originalBody.getMethod());
@@ -1179,47 +1059,10 @@ public class CodeTranformation extends SceneTransformer{
         
 	//add locals for formal parameters of constructor
 	 Body constructorBody = (Body)constructor.getActiveBody();
-//	 Chain<Local> list = constructorBody.getLocals();
-//	 List<Local> constructorParameterList = new ArrayList<>(list);
-	
-//    for(int i=0; i<constructorParameterList.size(); i++) {
-//    	
-//    	 Local local = constructorParameterList.get(i);
-////    	 if(!local.getName().toString().equals("this")) {
-//    	 	System.out.println("LOCALLLL-- " +local.getName() + " "+ local.getType());
-//	    	 Local parameterLocal1 = Jimple.v().newLocal(local.getName(), local.getType());
-//	    	 System.out.println("PARLOCALLLL-- " +parameterLocal1);
-//	    	 body.getLocals().add(parameterLocal1);	    
-////    	 }
-//    }
     
 	List<Local> parameterListToUse = new ArrayList<>();
     HashMap<String, Local> fieldsToUseMap = new HashMap<>();
 
-//	for(SootField field: allFields) {
-//
-//		 Local local1 = Jimple.v().newLocal(field.getName(), field.getType());
-//		 body.getLocals().add(local1);
-//		 fieldsToUseMap.put(field.getName(), local1);
-//		 parameterListToUse.add(local1);
-//		//	         Stmt stmt = null;
-//		 Type localType = field.getType();
-//
-//		 if (localType instanceof IntType || localType instanceof BooleanType) {
-//			 	
-//			 	Unit lastUnit = body.getUnits().getFirst();
-//			    Stmt stmt = Jimple.v().newAssignStmt(local1, IntConstant.v(0));
-//			    body.getUnits().insertBefore(stmt, lastUnit);
-//			    
-//		} else if (localType instanceof RefType) {
-//			
-//			Unit lastUnit = body.getUnits().getFirst();	
-//			Stmt stmt = Jimple.v().newAssignStmt(local1, NullConstant.v());
-//		    body.getUnits().insertBefore(stmt, lastUnit);	
-//		}	 
-//	}
-
-	
 	PatchingChain<Unit> units = body.getUnits();
 	PatchingChain<Unit> chain = new PatchingChain<>(units);
 	Iterator<Unit> iterator = chain.snapshotIterator();
@@ -1366,14 +1209,7 @@ public class CodeTranformation extends SceneTransformer{
 		
 		
 		addFactoryMethodUtil(constructor, className, allFields);
-//		if(constructor.getParameterCount()==1) {
-//			addZeroArgumentConstructor(constructor);
-//		}else {
-//			
-//			addFactoryMethodUtil(constructor, className, allFields);
-//			
-//			
-//		}
+
 	}
 	public static synchronized void addOurOwnConstructor(String className, Chain<SootField> allFields) {
 		
